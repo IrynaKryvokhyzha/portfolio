@@ -1,31 +1,39 @@
 <template>
   <section id="home" class="introduction">
-    <!-- <div v-if="isLoading" class="loader">
-      <v-progress-circular indeterminate color="green"></v-progress-circular>
-    </div> -->
     <img
       class="background"
-      src="../assets/images/forest.jpg"
+      src="../assets/images/idea.jpeg"
       alt="pines image"
     />
-    <div class="content">
-      <h1 class="header">Hello, I'm <span>IRYNA KRYVOKHYZHA</span></h1>
-      <h2 class="subheader">I'm a frontend developer</h2>
-      <div class="icon">
-        <font-awesome-icon
-          @click="scroll('about')"
-          :icon="['fas', 'angles-down']"
-          class="fa-solid fa-heart fa-beat"
-          style="--fa-animation-duration: 1s;"
-        />
+    <div class="introduction__container">
+      <div class="content">
+        <div class="content-left">
+          <my-info class="my-info" />
+        </div>
+        <div class="content-right">
+          <h1 class="header">
+            WEB DEVELOPER
+          </h1>
+          <h2 class="subheader">
+            4+ years of experience in development. Proficient in crafting,
+            deploying, and optimizing web applications using a diverse tech
+            stack including JavaScript, Vue.js, Nuxt.js, and Node.js. Passionate
+            about seeking new challenges to continually refine and expand my
+            skill set.
+          </h2>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import MyInfo from "@/components/MyInfo.vue";
 export default {
   name: "IntroductionComponent",
+  components: {
+    MyInfo,
+  },
   methods: {
     scroll(refName) {
       const element = document.getElementById(refName);
@@ -47,6 +55,14 @@ export default {
   transform-style: preserve-3d;
   z-index: -1;
   padding: 30px;
+  background-color: rgb(#000814, 0.9);
+
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: 100%;
+  }
+  &__container {
+  }
 }
 .background {
   transform: translateZ(-10px) scale(2);
@@ -55,28 +71,52 @@ export default {
   width: 100%;
   object-fit: cover;
   object-position: center;
-  z-index: -1;
-  background-color: black;
+  z-index: 0;
 }
+
 .content {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  width: 100%;
+  min-height: 100%;
+  padding-top: 50px;
+  z-index: 10;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (max-width: 480px) {
+    padding-top: 30px;
+  }
+}
+.content-left {
+  flex: 1 1 40%;
+  visibility: hidden;
+
+  @media (max-width: 1330px) {
+    flex: 1 1 50%;
+  }
+  @media (max-width: 768px) {
+    visibility: inherit;
+  }
+}
+.content-right {
+  flex: 1 1 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  min-height: 100%;
-  padding-top: 400px;
-  @media (max-width: 480px) {
-    padding-top: 200px;
+  @media (max-width: 1330px) {
+    flex: 1 1 50%;
   }
 }
-
 .header,
-.subheader,
 .icon {
-  font-size: 48px;
   font-weight: 900;
-  text-shadow: 0 0 5px rgb(0, 0, 0);
+
   line-height: 1.5;
 
   @media (max-width: 460px) {
@@ -87,28 +127,21 @@ export default {
   }
 }
 .header {
-  font-weight: 700;
-  color: white;
+  font-size: 48px;
   text-align: center;
+  font-family: "Coming Soon";
+  color: #ffc300;
+  letter-spacing: 5px;
+  @media (max-width: 768px) {
+    font-size: 34px;
+  }
 }
 .subheader {
+  font-size: 24px;
+  line-height: 1.5;
   flex: 1 1 auto;
   color: white;
   flex-grow: 1;
-}
-span {
-  font-family: "Coming Soon";
-  color: yellow;
-  letter-spacing: 5px;
-}
-.icon {
-  transition: scale 0.5s ease;
-  color: yellow;
-
-  @media (any-hover: hover) {
-    &:hover {
-      scale: 1.8;
-    }
-  }
+  padding-bottom: 5rem;
 }
 </style>

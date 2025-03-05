@@ -1,33 +1,27 @@
 <template>
   <section id="portfolio" class="portfolio">
-    <div class="slider">
-      <div
-        v-for="(product, index) in getProductsList"
-        :key="product.id"
-        class="item"
-        :style="{ '--i': ++index, '--total': getProductsList.length }"
-      >
-        <div v-if="index !== getProductsList.length">
+    <div class="portfolio__container">
+      <div class="item-left"></div>
+      <div class="item-right">
+        <div><h2 class="title">Some Of My Projects</h2></div>
+        <div v-for="product in getProductsList" :key="product.id" class="item">
           <div class="image">
             <img :src="product.image" alt="image" />
-            <div class="content">
-              <h2 class="header">{{ product.title }}</h2>
-              <p class="description">{{ product.description }}</p>
+          </div>
+          <div class="content">
+            <h3 class="header">{{ product.title }}</h3>
+
+            <p class="description">{{ product.description }}</p>
+            <p class="technologies">{{ product.technologies }}</p>
+            <div class="social">
+              <a href="https://github.com/IrynaKryvokhyzha" class="social-item"
+                ><font-awesome-icon :icon="['fab', 'github']"
+              /></a>
               <a :href="product.link">
                 <button class="button">
                   View
                 </button>
               </a>
-            </div>
-          </div>
-        </div>
-
-        <div v-else>
-          <div class="image">
-            <img :src="product.image" alt="image" />
-            <div class="content">
-              <h2 class="header">{{ product.title }}</h2>
-              <p class="description">{{ product.description }}</p>
             </div>
           </div>
         </div>
@@ -48,124 +42,108 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 .portfolio {
-  background: linear-gradient(to right, #372f2f, rgb(233, 233, 126));
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1000px;
-  overflow: hidden;
-}
-.slider {
-  position: relative;
-  width: 350px;
-  height: 300px;
-  transform-style: preserve-3d;
-  animation: rotate 40s linear infinite;
+  background-color: #000814;
+  padding: 4rem 2rem 3rem 0;
   @media (max-width: 768px) {
-    width: 260px;
-    height: 200px;
+    padding: 1rem;
   }
-  @media (max-width: 400px) {
-    width: 180px;
-    height: 250px;
-  }
-  @media (any-hover: hover) {
-    &:hover {
-      animation-play-state: paused;
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    @media (max-width: 768px) {
+      flex-direction: column;
     }
   }
 }
-@keyframes rotate {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(360deg);
+
+.item-left {
+  flex: 0 1 40%;
+  @media (max-width: 1330px) {
+    flex: 0 1 50%;
   }
 }
-.item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform-origin: center;
-  transform-style: preserve-3d;
-  transform: rotateY(calc(var(--i) * 360deg / var(--total))) translateZ(400px);
-  transition: transform 0.2s;
-  z-index: 1;
-  @media (max-width: 768px) {
-    transform: rotateY(calc(var(--i) * 360deg / var(--total))) translateZ(300px);
-  }
-  @media (max-width: 400px) {
-    transform: rotateY(calc(var(--i) * 360deg / var(--total))) translateZ(200px);
-  }
-
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-    transition: 2s ease-out;
-
-    @media (any-hover: hover) {
-      &:hover {
-        transform: scale(1.2);
-        z-index: 10;
-      }
-    }
-  }
-}
-.content {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  padding: 10px;
+.item-right {
+  flex: 0 1 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 50px;
+  @media (max-width: 1330px) {
+    flex: 0 1 50%;
+  }
+}
+.item {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  gap: 20px;
   border-radius: 10px;
-  background: rgb(0, 0, 0, 0.5);
-  opacity: 0;
+  box-shadow: 2px 4px 10px rgba(#ffd60a, 0.967);
+  transition: all 0.3s ease;
+  @media (max-width: 991px) {
+    flex-direction: column;
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      box-shadow: 4px 6px 14px rgba(#ffd60a, 0.967);
+      scale: 1.01;
+    }
+  }
+}
+.image {
+  img {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    object-fit: cover;
+    @media (max-width: 991px) {
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+      height: 100%;
+    }
+  }
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  gap: 10px;
   transition: all 0.5s ease;
+  @media (max-width: 991px) {
+    justify-content: start;
+    align-items: start;
+  }
   @media (max-width: 768px) {
-    opacity: 1;
     justify-content: flex-start;
     gap: 5px;
   }
   @media (any-hover: hover) {
-    &:hover {
-      opacity: 1;
-    }
   }
 }
-.content > * {
-  transform: translateY(50px);
-  transition: transform 1s;
+h2 {
+  font-family: "Coming Soon";
+  font-size: 58px;
+  font-weight: 700;
+  color: #ffc300;
+  line-height: 1.2;
+  @media (max-width: 1039px) {
+    font-size: 42px;
+  }
+  @media (max-width: 343px) {
+    font-size: 32px;
+  }
 }
-.content:hover > * {
-  transform: translateY(0);
-}
-
 .header {
-  font-size: 32px;
-  color: yellow;
-  font-weight: 800;
+  font-size: 24px;
+  color: #ffd60a;
+
   text-shadow: 3px 0 black;
   @media (max-width: 768px) {
     font-size: 24px;
@@ -175,22 +153,73 @@ export default {
   }
 }
 .description {
-  font-size: 24px;
-  color: white;
+  color: rgb(202, 202, 202);
   line-height: 1.2;
+  background-color: rgba(#001d3d, 0.7);
+  padding: 20px;
+  border-radius: 5px;
+  text-align: start;
+  margin-left: -30px;
+  @media (max-width: 991px) {
+    margin-left: 0;
+  }
   @media (max-width: 768px) {
     font-size: 16px;
   }
   @media (max-width: 400px) {
   }
 }
+.technologies {
+  color: rgb(124, 123, 123);
+  font-weight: 600;
+  line-height: 1.2;
+
+  @media (max-width: 991px) {
+    text-align: start;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+.social {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  color: #219ebc;
+  gap: 20px;
+  width: 100%;
+  @media (max-width: 991px) {
+    justify-content: start;
+  }
+}
+.social-item {
+  font-size: 28px;
+  color: #219ebc;
+
+  transition: transform 0.3s ease;
+
+  @media (any-hover: hover) {
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
 .button {
-  color: yellow;
-  font-size: 24px;
-  text-decoration: underline;
+  color: #219ebc;
+  font-size: 18px;
+  border: 1px solid #219ebc;
+  padding: 8px;
+  border-radius: 5px;
   text-transform: capitalize;
   @media (max-width: 400px) {
     font-size: 16px;
+  }
+  transition: transform 0.3s ease;
+  @media (any-hover: hover) {
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }
 </style>

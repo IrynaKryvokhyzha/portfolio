@@ -1,17 +1,10 @@
 <template>
   <section id="about" class="about">
     <div class="about__body body">
-      <div class="image-ibg">
-        <img src="../assets/images/photo.jpg" alt="my image" />
-      </div>
+      <div class="image-ibg"></div>
       <div class="body-content">
-        <span class="span-about">ABOUT</span>
         <h2>{{ title }}</h2>
-        <p class="description">
-          I am Iryna , a dedicated frontend developer from Ukraine, currently
-          living in California, USA. My expertise is developing attractive and
-          user-friendly websites and web applications.
-        </p>
+        <p class="description"></p>
         <h3>TECH:</h3>
         <div class="fa-3x">
           <div class="tech-item">
@@ -54,6 +47,13 @@
             <h5 class="tech-title">Node.js</h5>
             <font-awesome-icon class="icon-node" :icon="['fab', 'node-js']" />
           </div>
+          <div class="tech-item">
+            <h5 class="tech-title">Database</h5>
+            <font-awesome-icon
+              class="icon-database"
+              :icon="['fas', 'database']"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -87,18 +87,23 @@ export default {
 
 <style lang="scss" scoped>
 .about {
+  padding: 2rem 0 3rem 0;
   position: relative;
   display: flex;
   font-family: "Open Sans";
   color: white;
-
+  margin-top: -40px;
+  background-color: #000814;
+  background: linear-gradient(180deg, transparent 0%, #000814 5%, #000814 100%);
+  @media (max-width: 768px) {
+    padding: 1rem 0 1rem 0;
+  }
   // .about__body
 
   &__body {
   }
 }
 .body {
-  //position: relative;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -107,34 +112,21 @@ export default {
   }
 }
 .image-ibg {
-  flex: 0 1 50%;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  @media (max-width: 768px) {
-    flex: 0 1 auto;
-    min-height: 400px;
-  }
-  @media (max-width: 420px) {
-    min-height: 300px;
-  }
-
-  img {
-    object-position: center;
+  flex: 0 1 40%;
+  @media (max-width: 1330px) {
+    flex: 0 1 50%;
   }
 }
 .body-content {
-  flex: 0 1 50%;
+  flex: 0 1 60%;
   padding: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
   gap: 50px;
-  background-color: #372f2f;
-
-  @media (max-width: 1280px) {
-    padding: 70px;
+  @media (max-width: 1330px) {
+    flex: 0 1 50%;
   }
   @media (max-width: 1168px) {
     padding: 40px;
@@ -155,7 +147,7 @@ h2 {
   position: relative;
   font-size: 58px;
   font-weight: 700;
-  color: rgb(233, 233, 126);
+  color: #ffc300;
 
   @media (max-width: 1039px) {
     font-size: 42px;
@@ -170,7 +162,7 @@ h2::before {
   left: 100%;
   width: 120%;
   height: 120%;
-  background: linear-gradient(90deg, transparent 0%, #372f2f 5%, #372f2f 100%);
+  background: linear-gradient(90deg, transparent 0%, #000814 5%, #000814 100%);
   animation: animate 5s linear infinite;
 }
 @keyframes animate {
@@ -229,7 +221,8 @@ h3 {
 .icon-sass,
 .icon-github,
 .icon-bootstrap,
-.icon-node {
+.icon-node,
+.icon-database {
   transition: all 0.5s ease;
   transform: rotate(0deg);
 
@@ -265,5 +258,8 @@ h3 {
 }
 .icon-node {
   color: #3c873a;
+}
+.icon-database {
+  color: #4271bd;
 }
 </style>

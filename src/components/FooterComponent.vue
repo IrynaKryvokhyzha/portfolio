@@ -32,7 +32,7 @@ export default {
 .footer {
   padding: 30px;
   height: 100%;
-  background-color: rgba(8, 8, 6, 0.9);
+  background-color: rgba(#003566, 0.9);
 }
 .social {
   // .social__social-link
@@ -41,7 +41,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    color: aliceblue;
+    color: #ffd60a;
   }
 
   // .social__item

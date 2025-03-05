@@ -29,7 +29,12 @@
             >
               Portfolio
             </li>
-            <li class="menu__item" @click="emitScroll('contact')">Contact</li>
+            <li
+              :class="['menu__item', { active: activeItem === 'contact' }]"
+              @click="emitScroll('contact')"
+            >
+              Contact
+            </li>
           </ul>
         </nav>
       </div>
@@ -84,12 +89,12 @@ export default {
   &__component {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: start;
     padding: 0rem 5rem;
     align-items: center;
     font-weight: 500;
     color: #fff;
-    background-color: rgba(8, 8, 6, 0.9);
+    background-color: rgba(#000814, 0.9);
 
     @media (max-width: 790px) {
       padding-right: 2rem;
@@ -137,7 +142,7 @@ export default {
     flex: 1 1 auto;
     transition: all 0.5s ease;
     &.active {
-      color: yellow;
+      color: #ffd60a;
     }
     @media (any-hover: hover) {
       &:hover {
