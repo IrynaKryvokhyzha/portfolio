@@ -1,16 +1,19 @@
 <template>
   <section id="contact" class="contact">
-    <div class="contact__body body">
-      <div class="image-ibg"></div>
-      <div class="body-content">
-        <h2>Get in Touch</h2>
-        <p class="description">
-          Whether it's a job opportunity or project, my inbox is always open. If
-          you have a question or just want to say hi, feel free to contact me.
-        </p>
-        <a href="mailto:irynakryvokhyzha@gmail.com" class="button"
-          >Say Hello!
-        </a>
+    <div class="contact__container">
+      <div class="contact__body body">
+        <div class="image-ibg"></div>
+        <div class="body-content">
+          <h2>Get in Touch</h2>
+          <p class="description">
+            Whether it's a job opportunity or project, my inbox is always open.
+            If you have a question or just want to say hi, feel free to contact
+            me.
+          </p>
+          <a href="mailto:irynakryvokhyzha@gmail.com" class="button"
+            >Say Hello!
+          </a>
+        </div>
       </div>
     </div>
   </section>

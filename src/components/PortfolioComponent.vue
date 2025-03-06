@@ -47,7 +47,7 @@ export default {
   padding: 4rem 2rem 3rem 0;
   margin-top: -50px;
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 1rem 1rem 3rem 1rem;
   }
   &__container {
     display: flex;
