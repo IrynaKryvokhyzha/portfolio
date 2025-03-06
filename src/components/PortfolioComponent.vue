@@ -45,6 +45,7 @@ export default {
 .portfolio {
   background-color: #000814;
   padding: 4rem 2rem 3rem 0;
+  margin-top: -50px;
   @media (max-width: 768px) {
     padding: 1rem;
   }
@@ -85,6 +86,7 @@ export default {
   border-radius: 10px;
   box-shadow: 2px 4px 10px rgba(#ffd60a, 0.967);
   transition: all 0.3s ease;
+
   @media (max-width: 991px) {
     flex-direction: column;
   }

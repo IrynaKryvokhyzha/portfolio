@@ -65,13 +65,13 @@ export default {
   }
 }
 .background {
-  transform: translateZ(-10px) scale(2);
+  transform: translateZ(-4px) scale(1.9);
   position: absolute;
   height: 100%;
   width: 100%;
   object-fit: cover;
   object-position: center;
-  z-index: 0;
+  z-index: -1;
 }
 
 .content {
