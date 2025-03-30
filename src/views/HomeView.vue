@@ -2,19 +2,51 @@
   <MainMasterPage>
     <div class="home">
       <introduction-component id="home" />
-      <about-component />
-      <portfolio-component />
-      <contact-component />
+      <!-- Lazy-loaded components -->
+      <Suspense>
+        <template #default>
+          <AboutComponent />
+        </template>
+        <template #fallback>
+          <div>Loading About...</div>
+        </template>
+      </Suspense>
+
+      <Suspense>
+        <template #default>
+          <PortfolioComponent />
+        </template>
+        <template #fallback>
+          <div>Loading Portfolio...</div>
+        </template>
+      </Suspense>
+
+      <Suspense>
+        <template #default>
+          <ContactComponent />
+        </template>
+        <template #fallback>
+          <div>Loading Contact...</div>
+        </template>
+      </Suspense>
     </div>
   </MainMasterPage>
 </template>
 
 <script>
-import AboutComponent from "../components/AboutComponent.vue";
+import { defineAsyncComponent } from "vue";
 import IntroductionComponent from "../components/IntroductionComponent.vue";
-import PortfolioComponent from "../components/PortfolioComponent.vue";
 import MainMasterPage from "@/masterpages/MainMasterPage.vue";
-import ContactComponent from "@/components/ContactComponent.vue";
+// Lazy-load these components
+const AboutComponent = defineAsyncComponent(() =>
+  import("@/components/AboutComponent.vue")
+);
+const PortfolioComponent = defineAsyncComponent(() =>
+  import("@/components/PortfolioComponent.vue")
+);
+const ContactComponent = defineAsyncComponent(() =>
+  import("@/components/ContactComponent.vue")
+);
 
 export default {
   name: "HomeView",

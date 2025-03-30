@@ -12,7 +12,7 @@ export default createStore({
           "HTML CSS3 VanillaJS Node.js Express.js MongoDB (Mongoose ORM) JWT / Passport.js (Authentication) Multer ",
         github: "https://github.com/IrynaKryvokhyzha/handcrafted-purses",
         link: "https://funny-sunburst-7036fc.netlify.app",
-        image: require("@/assets/images/purses.png"),
+        image: require("@/assets/images/purses.webp"),
       },
       {
         id: 2,
@@ -23,7 +23,7 @@ export default createStore({
         technologies:
           "HTML CSS3 VueJS Vuex Vue Router Vuetify oAuth Firebase Firestore",
         link: "https://bean-scene.com",
-        image: require("@/assets/images/bean.png"),
+        image: require("@/assets/images/bean.webp"),
       },
       {
         id: 3,

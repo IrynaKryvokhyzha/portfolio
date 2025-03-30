@@ -74,13 +74,13 @@ export default {
       return this.titles[this.currenIndex];
     },
   },
+  mounted() {
+    setInterval(this.changeTitle, 5000);
+  },
   methods: {
     changeTitle() {
       this.currenIndex = (this.currenIndex + 1) % this.titles.length;
     },
-  },
-  mounted() {
-    setInterval(this.changeTitle, 5000);
   },
 };
 </script>

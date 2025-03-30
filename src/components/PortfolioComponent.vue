@@ -6,7 +6,7 @@
         <div><h2 class="title">Some Of My Projects</h2></div>
         <div v-for="product in getProductsList" :key="product.id" class="item">
           <div class="image">
-            <img :src="product.image" alt="image" />
+            <img :src="product.image" loading="lazy" alt="image" />
           </div>
           <div class="content">
             <h3 class="header">{{ product.title }}</h3>

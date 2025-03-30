@@ -45,9 +45,10 @@
 <script>
 export default {
   name: "NavComponent",
+  emits: ["onScroll"],
   data() {
     return {
-      scrolledNav: null,
+      scrolledNav: false,
       sidebarVisible: false,
       activeItem: "",
     };
@@ -55,14 +56,14 @@ export default {
   mounted() {
     window.addEventListener("scroll", this.updateScroll);
   },
+  unmounted() {
+    //Remove event listener to avoid memory leaks
+    window.removeEventListener("scroll", this.updateScroll);
+  },
   methods: {
     updateScroll() {
       const scrollPosition = window.scrollY;
-      if (scrollPosition > 100) {
-        this.scrolledNav = true;
-        return;
-      }
-      this.scrolledNav = false;
+      this.scrolledNav = scrollPosition > 100;
     },
     emitScroll(refName) {
       this.activeItem = refName;
