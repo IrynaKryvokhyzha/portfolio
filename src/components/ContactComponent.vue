@@ -5,14 +5,41 @@
         <div class="image-ibg"></div>
         <div class="body-content">
           <h2>Get in Touch</h2>
+
           <p class="description">
             Whether it's a job opportunity or project, my inbox is always open.
             If you have a question or just want to say hi, feel free to contact
             me.
           </p>
-          <a href="mailto:irynakryvokhyzha@gmail.com" class="button"
-            >Say Hello!
-          </a>
+          <form ref="contactForm" class="form" @submit.prevent="sendEmail">
+            <!-- Name -->
+            <input
+              type="text"
+              name="from_name"
+              placeholder="Your name"
+              required
+            />
+
+            <!-- Reply-to email -->
+            <input
+              type="email"
+              name="reply_to"
+              placeholder="Your email"
+              required
+            />
+
+            <!-- Message -->
+            <textarea
+              name="message"
+              rows="5"
+              placeholder="Your message"
+              required
+            />
+
+            <button class="button" :disabled="sending">
+              {{ sending ? "Sending…" : "Send Message" }}
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -20,8 +47,34 @@
 </template>
 
 <script>
+import emailjs from "@emailjs/browser";
 export default {
   name: "ContactComponent",
+  data() {
+    return { sending: false };
+  },
+  methods: {
+    async sendEmail() {
+      this.sending = true;
+
+      try {
+        await emailjs.sendForm(
+          process.env.VUE_APP_EMAILJS_SERVICE_ID,
+          process.env.VUE_APP_EMAILJS_TEMPLATE_ID,
+          this.$refs.contactForm,
+          process.env.VUE_APP_EMAILJS_PUBLIC_KEY
+        );
+
+        alert("Message sent 🎉");
+        this.$refs.contactForm.reset();
+      } catch (err) {
+        console.error(err);
+        alert("Oops—there was a problem. Please try again later.");
+      } finally {
+        this.sending = false;
+      }
+    },
+  },
 };
 </script>
 
@@ -32,7 +85,7 @@ export default {
   display: flex;
   font-family: "Open Sans";
   color: white;
-  margin-top: -40px;
+  margin-top: -60px;
   background-color: #000814;
   background: linear-gradient(180deg, transparent 0%, #000814 5%, #000814 100%);
   @media (max-width: 768px) {
@@ -116,5 +169,28 @@ h2 {
       scale: 1.1;
     }
   }
+}
+form {
+  width: 100%;
+}
+input,
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 10px 0;
+  display: flex;
+  background-color: rgb(221, 221, 221); /* 4.54:1 vs #ffffff → PASS */
+  border: 1px solid white;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #000814;
+}
+input:focus,
+textarea:focus {
+  outline: 3px solid #005fcc;
+  outline-offset: 2px;
 }
 </style>

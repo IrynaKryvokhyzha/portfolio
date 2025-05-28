@@ -14,7 +14,10 @@
             <p class="description">{{ product.description }}</p>
             <p class="technologies">{{ product.technologies }}</p>
             <div class="social">
-              <a href="https://github.com/IrynaKryvokhyzha" class="social-item"
+              <a
+                v-if="product.github"
+                :href="product.github"
+                class="social-item"
                 ><font-awesome-icon :icon="['fab', 'github']"
               /></a>
               <a :href="product.link">
